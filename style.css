@@ -99,7 +99,7 @@ body::before {
    LOGO & TITLES
 ========================= */
 .logo {
-  width: 110px;
+  width: 100%;
   margin: 0 auto 20px;
   display: block;
   filter: drop-shadow(0 0 15px var(--pt-gold));
