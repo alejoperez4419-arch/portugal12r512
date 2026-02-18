@@ -1,5 +1,5 @@
 /* =========================
-   RESET
+   RESET & BASE
 ========================= */
 * {
   margin: 0;
@@ -8,50 +8,45 @@
 }
 
 /* =========================
-   VARIABLES – PORTUGAL PRO
+   VARIABLES – PORTUGAL ELITE
 ========================= */
 :root {
-  --green: #0b5e3f;
-  --green-neon: #00ff9d;
-
-  --red: #9b0f19;
-  --red-neon: #ff1f3d;
-
-  --gold: #ffc933;
-
-  --dark: #060b09;
-  --text: #ffffff;
+  --pt-green-dark: #043825;
+  --pt-green-bright: #0c8346;
+  --pt-red-deep: #8b0000;
+  --pt-red-light: #e30613;
+  --pt-gold: #d4af37;
+  --pt-gold-glow: #ffdf00;
+  --pt-white: #ffffff;
+  --pt-glass: rgba(0, 0, 0, 0.65);
 }
 
 /* =========================
-   BODY – BANDERA GAMER
+   BODY – ESTILO FEDERACIÓN
 ========================= */
 body {
   font-family: 'Russo One', sans-serif;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--green) 0%,
-      var(--green) 45%,
-      var(--red) 55%,
-      var(--red) 100%
-    );
-
-  color: var(--text);
+  /* Fondo con degradado de bandera y textura de patrón sutil */
+  background: 
+    linear-gradient(135deg, rgba(4, 56, 37, 0.95) 0%, rgba(139, 0, 0, 0.95) 100%),
+    url('https://www.transparenttextures.com/patterns/azulejo-light.png'); 
+  background-attachment: fixed;
+  color: var(--pt-white);
   min-height: 100vh;
   overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* sombra central oscura */
-body::after {
+/* Viñeta para enfoque central */
+body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 40%, #000 120%);
-  opacity: .7;
+  background: radial-gradient(circle at center, transparent 20%, #000 150%);
+  z-index: 0;
   pointer-events: none;
-  z-index: 1;
 }
 
 /* =========================
@@ -59,9 +54,9 @@ body::after {
 ========================= */
 .container {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   margin: auto;
-  padding: 20px;
+  padding: 25px;
   position: relative;
   z-index: 2;
 }
@@ -71,135 +66,116 @@ body::after {
 ========================= */
 .section {
   display: none;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  animation: slideIn .45s ease;
+  width: 100%;
+  flex-direction: column;
+  animation: portugalFade 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .section.active {
   display: flex;
 }
 
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes portugalFade {
+  from { opacity: 0; transform: scale(0.95); filter: blur(10px); }
+  to { opacity: 1; transform: scale(1); filter: blur(0); }
 }
 
 /* =========================
-   CONTENT BOX – PACK STYLE
+   CONTENT BOX – LUXURY CARD
 ========================= */
 .content-box {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,255,157,0.15),
-      rgba(255,31,61,0.15)
-    );
-
-  border-radius: 20px;
-  padding: 26px;
-
-  border: 2px solid rgba(255,255,255,0.12);
-
-  box-shadow:
-    0 0 30px rgba(0,255,157,.35),
-    0 0 45px rgba(255,31,61,.35);
-
-  backdrop-filter: blur(8px);
+  background: var(--pt-glass);
+  border-radius: 24px;
+  padding: 30px;
+  text-align: center;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(12px);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(212, 175, 55, 0.1);
 }
 
 /* =========================
-   LOGO
+   LOGO & TITLES
 ========================= */
 .logo {
-  width: 100%;
-  margin-bottom: 22px;
-
-  filter:
-    drop-shadow(0 0 18px var(--green-neon))
-    drop-shadow(0 0 18px var(--red-neon));
+  width: 110px;
+  margin: 0 auto 20px;
+  display: block;
+  filter: drop-shadow(0 0 15px var(--pt-gold));
 }
 
-/* =========================
-   TITLES
-========================= */
 h2 {
-  font-size: 22px;
-  color: var(--gold);
-
-  text-shadow:
-    0 0 10px var(--gold),
-    0 0 25px var(--red-neon);
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--pt-gold);
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 p {
-  opacity: .9;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin-bottom: 15px;
 }
 
 /* =========================
-   INPUT – PANEL
+   INPUT – MODERN PANEL
 ========================= */
 input {
   width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-
+  padding: 16px;
+  margin-top: 15px;
   border-radius: 12px;
-  border: 2px solid rgba(255,255,255,0.15);
-
-  background: rgba(0,0,0,0.55);
-  color: var(--green-neon);
-
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--pt-gold-glow);
+  font-family: inherit;
+  font-size: 16px;
   text-align: center;
-
-  box-shadow:
-    inset 0 0 12px rgba(0,255,157,.35);
+  transition: all 0.3s ease;
 }
 
-input::placeholder {
-  color: rgba(255,255,255,.4);
+input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--pt-gold-glow);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
 /* =========================
-   BUTTON – ULTRA ATTACK
+   BUTTON – THE CONQUEROR
 ========================= */
 button {
-  margin-top: 20px;
+  margin-top: 25px;
   width: 100%;
-  padding: 15px;
-
-  border-radius: 14px;
+  padding: 18px;
+  border-radius: 12px;
   border: none;
-
-  font-size: 14px;
+  font-family: inherit;
+  font-size: 15px;
+  text-transform: uppercase;
   letter-spacing: 2px;
-  font-weight: bold;
-
+  font-weight: 800;
   cursor: pointer;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--green-neon),
-      var(--gold),
-      var(--red-neon)
-    );
-
+  
+  background: linear-gradient(45deg, var(--pt-gold), #fff9e6, var(--pt-gold));
+  background-size: 200% auto;
   color: #000;
-
-  box-shadow:
-    0 0 25px var(--green-neon),
-    0 0 35px var(--red-neon);
-
-  transition: transform .25s, box-shadow .25s;
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+  transition: all 0.4s ease;
 }
 
 button:hover {
-  transform: scale(1.08);
-  box-shadow:
-    0 0 45px var(--gold),
-    0 0 65px var(--red-neon);
+  transform: translateY(-3px);
+  background-position: right center;
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 /* =========================
@@ -208,110 +184,93 @@ button:hover {
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 20px;
+  gap: 15px;
+  margin-top: 25px;
 }
 
 /* =========================
-   CARD – OPTIMIZADA + SHINE PRO
+   CARD – ARMILLARY STYLE
 ========================= */
 .card {
   position: relative;
-  overflow: hidden; /* clave */
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(0,255,157,.2),
-      rgba(255,31,61,.25)
-    );
-
-  border-radius: 14px;
-  padding: 8px;
-
-  border: 1px solid rgba(255,255,255,0.2);
-
-  transition: transform .25s, box-shadow .25s;
-}
-
-/* ✨ REFLEJO GPU FRIENDLY */
-.card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 70%;
-  height: 100%;
-
-  background: linear-gradient(
-    110deg,
-    transparent 0%,
-    rgba(255,255,255,0.25) 40%,
-    rgba(255,255,255,0.55) 50%,
-    rgba(255,255,255,0.25) 60%,
-    transparent 100%
-  );
-
-  transform: skewX(-20deg) translateX(0);
-  will-change: transform;
-
-  animation: shinePro 4s linear infinite;
-}
-
-/* SOLO TRANSFORM = SIN LAG */
-@keyframes shinePro {
-  from {
-    transform: skewX(-20deg) translateX(0);
-  }
-  to {
-    transform: skewX(-20deg) translateX(320%);
-  }
+  border-radius: 15px;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
 }
 
 .card img {
   width: 100%;
+  display: block;
   border-radius: 10px;
+  transition: transform 0.5s ease;
 }
 
-/* hover gamer */
+/* Brillo de Azulejo / Premium Shine */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
 .card:hover {
-  transform: translateY(-10px) scale(1.06);
-  box-shadow:
-    0 0 40px var(--green-neon),
-    0 0 55px var(--red-neon);
+  transform: scale(1.05);
+  border-color: var(--pt-gold);
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card.selected {
-  outline: 3px solid var(--gold);
-  box-shadow: 0 0 40px var(--gold);
+  outline: 3px solid var(--pt-gold);
+  box-shadow: 0 0 25px var(--pt-gold);
+  background: rgba(212, 175, 55, 0.2);
 }
 
 /* =========================
-   SPINNER – ENERGY BALL
+   SPINNER – QUINAS ENERGY
 ========================= */
 .spinner {
-  width: 68px;
-  height: 68px;
-  margin: 22px auto;
-
+  width: 60px;
+  height: 60px;
+  margin: 25px auto;
   border-radius: 50%;
-  border: 6px solid rgba(255,255,255,0.15);
-  border-top: 6px solid var(--gold);
-
-  animation: spin .9s linear infinite;
-
-  box-shadow: 0 0 25px var(--gold);
+  border: 4px solid rgba(212, 175, 55, 0.1);
+  border-top: 4px solid var(--pt-gold);
+  border-right: 4px solid var(--pt-green-bright);
+  animation: spinPT 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+@keyframes spinPT {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
-@media (max-width: 360px) {
+@media (max-width: 380px) {
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .content-box {
+    padding: 20px;
   }
 }
