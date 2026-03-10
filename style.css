@@ -8,30 +8,29 @@
 }
 
 /* =========================
-   VARIABLES – PORTUGAL ELITE
+   VARIABLES – CROATIA ELITE
 ========================= */
 :root {
-  --pt-green-dark: #043825;
-  --pt-green-bright: #0c8346;
-  --pt-red-deep: #8b0000;
-  --pt-red-light: #e30613;
-  --pt-gold: #d4af37;
-  --pt-gold-glow: #ffdf00;
-  --pt-white: #ffffff;
-  --pt-glass: rgba(0, 0, 0, 0.65);
+  --hr-red: #ff0000;
+  --hr-red-dark: #b30000;
+  --hr-blue: #003893;
+  --hr-white: #ffffff;
+  --hr-silver: #e0e0e0;
+  --hr-glass: rgba(0, 20, 50, 0.75);
+  --hr-checker: rgba(255, 0, 0, 0.1);
 }
 
 /* =========================
-   BODY – ESTILO FEDERACIÓN
+   BODY – VATRENI STYLE
 ========================= */
 body {
   font-family: 'Russo One', sans-serif;
-  /* Fondo con degradado de bandera y textura de patrón sutil */
+  /* Fondo con degradado tricolor y patrón de damero */
   background: 
-    linear-gradient(135deg, rgba(4, 56, 37, 0.95) 0%, rgba(139, 0, 0, 0.95) 100%),
-    url('https://www.transparenttextures.com/patterns/azulejo-light.png'); 
+    linear-gradient(135deg, rgba(255, 0, 0, 0.9) 0%, rgba(0, 56, 147, 0.9) 100%),
+    url('https://www.transparenttextures.com/patterns/cubes.png'); 
   background-attachment: fixed;
-  color: var(--pt-white);
+  color: var(--hr-white);
   min-height: 100vh;
   overflow-x: hidden;
   display: flex;
@@ -39,12 +38,12 @@ body {
   justify-content: center;
 }
 
-/* Viñeta para enfoque central */
+/* Viñeta para enfoque central con tono azulado */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 20%, #000 150%);
+  background: radial-gradient(circle at center, transparent 10%, #000 160%);
   z-index: 0;
   pointer-events: none;
 }
@@ -68,31 +67,48 @@ body::before {
   display: none;
   width: 100%;
   flex-direction: column;
-  animation: portugalFade 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: croatiaFade 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .section.active {
   display: flex;
 }
 
-@keyframes portugalFade {
-  from { opacity: 0; transform: scale(0.95); filter: blur(10px); }
-  to { opacity: 1; transform: scale(1); filter: blur(0); }
+@keyframes croatiaFade {
+  from { opacity: 0; transform: translateY(20px); filter: saturate(0); }
+  to { opacity: 1; transform: translateY(0); filter: saturate(1); }
 }
 
 /* =========================
-   CONTENT BOX – LUXURY CARD
+   CONTENT BOX – MODERN ARENA
 ========================= */
 .content-box {
-  background: var(--pt-glass);
-  border-radius: 24px;
+  background: var(--hr-glass);
+  border-radius: 20px;
   padding: 30px;
   text-align: center;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  backdrop-filter: blur(12px);
+  border: 2px solid var(--hr-white);
+  backdrop-filter: blur(15px);
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.5),
-    inset 0 0 20px rgba(212, 175, 55, 0.1);
+    0 25px 60px rgba(0, 0, 0, 0.6),
+    inset 0 0 30px rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Marca de agua de damero interna */
+.content-box::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(45deg, var(--hr-checker) 25%, transparent 25%), 
+    linear-gradient(-45deg, var(--hr-checker) 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, var(--hr-checker) 75%), 
+    linear-gradient(-45deg, transparent 75%, var(--hr-checker) 75%);
+  background-size: 40px 40px;
+  z-index: -1;
+  opacity: 0.3;
 }
 
 /* =========================
@@ -100,38 +116,40 @@ body::before {
 ========================= */
 .logo {
   width: 100%;
+  max-width: 180px;
   margin: 0 auto 20px;
   display: block;
-  filter: drop-shadow(0 0 15px var(--pt-gold));
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 26px;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--pt-gold);
+  letter-spacing: 2px;
+  color: var(--hr-white);
   margin-bottom: 10px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 3px 3px 0px var(--hr-red);
 }
 
 p {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.5;
-  margin-bottom: 15px;
+  color: var(--hr-silver);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-weight: 300;
 }
 
 /* =========================
-   INPUT – MODERN PANEL
+   INPUT – VATRENI PANEL
 ========================= */
 input {
   width: 100%;
   padding: 16px;
   margin-top: 15px;
-  border-radius: 12px;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--pt-gold-glow);
+  border-radius: 8px;
+  border: 2px solid var(--hr-red);
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--hr-white);
   font-family: inherit;
   font-size: 16px;
   text-align: center;
@@ -140,42 +158,41 @@ input {
 
 input:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--pt-gold-glow);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  border-color: var(--hr-white);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
 }
 
 /* =========================
-   BUTTON – THE CONQUEROR
+   BUTTON – THE STRIKER
 ========================= */
 button {
   margin-top: 25px;
   width: 100%;
   padding: 18px;
-  border-radius: 12px;
+  border-radius: 8px;
   border: none;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 16px;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 800;
+  letter-spacing: 3px;
+  font-weight: 900;
   cursor: pointer;
   
-  background: linear-gradient(45deg, var(--pt-gold), #fff9e6, var(--pt-gold));
-  background-size: 200% auto;
-  color: #000;
-  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
-  transition: all 0.4s ease;
+  background: var(--hr-red);
+  color: var(--hr-white);
+  box-shadow: 0 6px 0px var(--hr-red-dark);
+  transition: all 0.2s ease;
 }
 
 button:hover {
-  transform: translateY(-3px);
-  background-position: right center;
-  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
+  background: #ff2a2a;
+  transform: translateY(2px);
+  box-shadow: 0 4px 0px var(--hr-red-dark);
 }
 
 button:active {
-  transform: translateY(0);
+  transform: translateY(6px);
+  box-shadow: 0 0px 0px var(--hr-red-dark);
 }
 
 /* =========================
@@ -184,93 +201,55 @@ button:active {
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  gap: 12px;
   margin-top: 25px;
 }
 
 /* =========================
-   CARD – ARMILLARY STYLE
+   CARD – CHECKERED STYLE
 ========================= */
 .card {
   position: relative;
-  border-radius: 15px;
-  padding: 5px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 4px;
+  background: var(--hr-blue);
+  border: 2px solid transparent;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .card img {
   width: 100%;
   display: block;
-  border-radius: 10px;
-  transition: transform 0.5s ease;
-}
-
-/* Brillo de Azulejo / Premium Shine */
-.card::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s;
+  border-radius: 8px;
 }
 
 .card:hover {
-  transform: scale(1.05);
-  border-color: var(--pt-gold);
-  background: rgba(255, 255, 255, 0.1);
-  z-index: 10;
-}
-
-.card:hover img {
-  transform: scale(1.1);
-}
-
-.card:hover::before {
-  opacity: 1;
+  transform: translateY(-5px);
+  border-color: var(--hr-red);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 .card.selected {
-  outline: 3px solid var(--pt-gold);
-  box-shadow: 0 0 25px var(--pt-gold);
-  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--hr-white);
+  background: var(--hr-red);
+  box-shadow: 0 0 20px var(--hr-red);
 }
 
 /* =========================
-   SPINNER – QUINAS ENERGY
+   SPINNER – PULSE ADRIATIC
 ========================= */
 .spinner {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   margin: 25px auto;
   border-radius: 50%;
-  border: 4px solid rgba(212, 175, 55, 0.1);
-  border-top: 4px solid var(--pt-gold);
-  border-right: 4px solid var(--pt-green-bright);
-  animation: spinPT 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  border: 5px solid var(--hr-white);
+  border-top: 5px solid var(--hr-red);
+  animation: spinHR 0.8s linear infinite;
 }
 
-@keyframes spinPT {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 380px) {
-  .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .content-box {
-    padding: 20px;
-  }
+@keyframes spinHR {
+  to { transform: rotate(360deg); }
 }
